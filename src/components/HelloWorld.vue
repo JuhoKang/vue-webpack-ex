@@ -1,6 +1,8 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
+    <button v-on:click="increment">inc</button>
+    <h1>{{ serverMessage }}</h1>
+    <h1>{{ count }}</h1>
     <p>
       For guide and recipes on how to configure / customize this project,<br>
       check out the
@@ -36,7 +38,21 @@ export default {
   name: 'HelloWorld',
   props: {
     msg: String
-  }
+  },
+  computed: {
+    count() {
+      return this.$store.state.count
+    },
+    serverMessage() {
+      return this.$store.state.serverMessage
+    }
+  },
+  methods:{
+    increment () {
+      this.$store.commit('increment');
+      this.$store.dispatch('sendMessage');
+    }
+  },
 }
 </script>
 
