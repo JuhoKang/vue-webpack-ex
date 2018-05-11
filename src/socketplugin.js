@@ -1,7 +1,9 @@
 export default function createSocketPlugin (socket) {
   return store => {
     socket.on("serverHello", (data) => {
-      store.commit("serverMessageChange", data)
+      console.log(data);
+      store.commit("serverMessageChange", data.msg);
+      store.commit("countChange", data.count);
     });
   }
 }

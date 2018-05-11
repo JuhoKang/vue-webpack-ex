@@ -21,12 +21,15 @@ export default new Vuex.Store({
     },
     serverMessageChange (state, msg) {
       state.serverMessage = msg
+    },
+    countChange (state, x) {
+      state.count = x;
     }
   },
   actions: {
     //need some more knowledge
     sendMessage (context) {
-      socket.emit("hello", { data: `hello ${this.state.count}` });
+      socket.emit("hello", { greetings: "hello", count: this.state.count });
     }
   },
   plugins: [plugin],
